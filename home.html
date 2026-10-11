@@ -1,0 +1,130 @@
+<!DOCTYPE html> <!-- Tells the browser this is an HTML5 page -->
+<html lang="en"> <!-- Root tag of the page (language: English) -->
+<head> <!-- Holds page setup info and styles (not shown on the page body) -->
+    <meta charset="UTF-8"> <!-- Supports special symbols and all text characters -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Fits page nicely on phone and laptop screens -->
+    <title>SHERLOCKED // Personal Developer Hub</title> <!-- Text shown on the browser tab -->
+    <style> /* Internal CSS styles for this page */
+        body { font-family: monospace; margin: 0; background: #0d1117; color: #e6edf3; line-height: 1.5; } /* Dark background, light text, code-style font */
+        header, footer { background: #161b22; padding: 14px 24px; border-bottom: 1px solid #30363d; } /* Dark bar style for top header and bottom footer */
+        header { display: flex; justify-content: space-between; align-items: center; } /* Puts logo on the left and menu on the right */
+        a { color: #38bdf8; text-decoration: none; } /* Makes links cyan and removes underline */
+        nav ul { list-style: none; display: flex; gap: 16px; margin: 0; padding: 0; } /* Removes bullets and puts menu links in a horizontal row */
+        main { max-width: 820px; margin: 20px auto; padding: 0 15px; } /* Centers the main content area on the screen */
+        section { background: #161b22; border: 1px solid #30363d; padding: 16px; margin-bottom: 16px; } /* Box style for each content section */
+        .cards { display: flex; gap: 14px; flex-wrap: wrap; } /* Places project cards side-by-side in a row */
+        .card { background: #0d1117; border: 1px solid #30363d; padding: 12px; width: 230px; } /* Box style for each single card */
+        .card img { width: 100%; height: 130px; object-fit: cover; } /* Makes card images fit neatly without stretching */
+        table { width: 100%; border-collapse: collapse; } /* Full-width table with single clean border lines */
+        td { border: 1px solid #30363d; padding: 8px; } /* Adds border and spacing inside each table cell */
+    </style>
+</head>
+<body> <!-- Everything visible on the webpage goes inside body -->
+
+    <!-- Top bar with site name and navigation menu -->
+    <header>
+        <a href="home.html">Sherlock's Lab</a> <!-- Brand link back to home page -->
+        <nav> <!-- Navigation menu container -->
+            <ul> <!-- Unordered list of menu links -->
+                <li><a href="home.html">Terminal</a></li> <!-- Link to Home page -->
+                <li><a href="projects.html">Projects</a></li> <!-- Link to Projects page -->
+                <li><a href="deploy-log.html">Deploy Log</a></li> <!-- Link to Deploy Log page -->
+                <li><a href="#stack">Tech Stack</a></li> <!-- Jumps down to id="stack" on this same page -->
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main page content -->
+    <main>
+        <!-- Section 1: Welcome banner -->
+        <section>
+            <h1>Personal Systems &amp; Code Workspace</h1> <!-- Main page heading (&amp; shows the & symbol) -->
+            <p>A minimal developer hub for tracking software builds, system benchmarks, and deployment logs.</p>
+            <a href="projects.html">[Explore Projects]</a> | <!-- Quick link to projects.html -->
+            <a href="deploy-log.html">[Log a Build]</a> <!-- Quick link to deploy-log.html -->
+        </section>
+
+        <!-- Section 2: Project cards showcase -->
+        <section>
+            <h2>// Active Builds</h2> <!-- Section heading -->
+            <div class="cards"> <!-- Flex wrapper that holds all 3 cards -->
+
+                <!-- Card 1 -->
+                <article class="card"> <!-- Self-contained card for one project -->
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=500&q=80" alt="Code editor on dark screen" width="250" height="140"> <!-- Project image with fallback alt text -->
+                    <h3>UniVerse</h3> <!-- Card title -->
+                    <p><time datetime="2026-10-15">15 Oct 2026</time> &bull; v1.4.0</p> <!-- Semantic date tag + bullet symbol (&bull;) -->
+                    <span>Systems</span> <!-- Small inline tag for category -->
+                </article>
+
+                <!-- Card 2 -->
+                <article class="card">
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=500&q=80" alt="Circuit board macro" width="250" height="140">
+                    <h3>Pulse Telemetry</h3>
+                    <p><time datetime="2026-11-02">02 Nov 2026</time> &bull; v2.1.0</p>
+                    <span>IoT / Edge</span>
+                </article>
+
+                <!-- Card 3 -->
+                <article class="card">
+                    <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=500&q=80" alt="Digital matrix code" width="250" height="140">
+                    <h3>Aegis Auth</h3>
+                    <p><time datetime="2026-11-18">18 Nov 2026</time> &bull; v0.9.5</p>
+                    <span>Security</span>
+                </article>
+            </div>
+        </section>
+
+        <!-- Section 3: Data table showing server status -->
+        <section>
+            <h2>// Lab Node Status</h2>
+            <table> <!-- Starts the table -->
+                <thead> <!-- Table header (top row of column titles) -->
+                    <tr> <!-- Table row -->
+                        <td>Node Name</td> <!-- Table cell -->
+                        <td>Architecture</td>
+                        <td>Uptime</td>
+                        <td>Status</td>
+                    </tr>
+                </thead>
+                <tbody> <!-- Table body (actual data rows) -->
+                    <tr>
+                        <td>alpha-core-01</td>
+                        <td>Linux x86_64</td>
+                        <td>42 Days</td>
+                        <td>Online</td>
+                    </tr>
+                    <tr>
+                        <td>edge-runner-02</td>
+                        <td>ARM64 Container</td>
+                        <td>19 Days</td>
+                        <td>Online</td>
+                    </tr>
+                    <tr>
+                        <td>neural-sandbox</td>
+                        <td>CUDA Workstation</td>
+                        <td>7 Days</td>
+                        <td>Standby</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Section 4: Bullet list (id="stack" lets the #stack link scroll here) -->
+        <section id="stack">
+            <h2>// Core Stack &amp; Principles</h2>
+            <p>Current focus areas in this workspace:</p>
+            <ul> <!-- Bulleted list -->
+                <li>Zero-bloat, semantic HTML and lightweight web interfaces</li> <!-- List item -->
+                <li>Low-latency backend services and automated build tracking</li>
+                <li>Clean documentation and reproducible deployment logs</li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- Bottom footer bar -->
+    <footer>
+        <p>&copy; 2026 Sherlock's Lab &mdash; Personal Developer Workspace</p> <!-- &copy; makes © and &mdash; makes — -->
+    </footer>
+</body>
+</html>

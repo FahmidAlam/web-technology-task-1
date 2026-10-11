@@ -1,0 +1,142 @@
+<!DOCTYPE html> <!-- Tells the browser this is an HTML5 page -->
+<html lang="en"> <!-- Root tag of the page (language: English) -->
+<head> <!-- Holds page setup info and CSS styles -->
+    <meta charset="UTF-8"> <!-- Supports special symbols and all text characters -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Fits page nicely on phone and laptop screens -->
+    <title>NEXUS // Projects Catalog</title> <!-- Text shown on the browser tab -->
+    <style> /* Internal CSS styles for this page */
+        body { font-family: monospace; margin: 0; background: #0d1117; color: #e6edf3; line-height: 1.5; } /* Dark theme and code-style font */
+        header, footer { background: #161b22; padding: 14px 24px; border-bottom: 1px solid #30363d; } /* Dark bar style for header and footer */
+        header { display: flex; justify-content: space-between; align-items: center; } /* Puts logo on left and menu on right */
+        a { color: #38bdf8; text-decoration: none; } /* Cyan links without underline */
+        nav ul { list-style: none; display: flex; gap: 16px; margin: 0; padding: 0; } /* Horizontal menu list with no bullets */
+        main { max-width: 820px; margin: 20px auto; padding: 0 15px; } /* Centers main content on screen */
+        section { background: #161b22; border: 1px solid #30363d; padding: 16px; margin-bottom: 16px; } /* Box style for each section */
+        select { background: #0d1117; color: #e6edf3; border: 1px solid #30363d; padding: 6px; margin-bottom: 12px; } /* Dark dropdown menu style */
+        .card { background: #0d1117; border: 1px solid #30363d; padding: 12px; margin-bottom: 10px; display: flex; gap: 14px; align-items: center; } /* Horizontal card: image on left, text on right */
+        table { width: 100%; border-collapse: collapse; } /* Full-width table with single clean border lines */
+        td { border: 1px solid #30363d; padding: 8px; } /* Border and spacing for table cells */
+    </style>
+</head>
+<body>
+
+    <!-- Top navigation header -->
+    <header>
+        <a href="home.html">Sherlock's Lab</a> <!-- Clickable brand name linking to home.html -->
+        <nav>
+            <ul>
+                <li><a href="home.html">Terminal</a></li> <!-- Link to Home page -->
+                <li><a href="projects.html">Projects</a></li> <!-- Link to Projects page -->
+                <li><a href="deploy-log.html">Deploy Log</a></li> <!-- Link to Deploy Log page -->
+                <li><a href="#benchmarks">Benchmarks</a></li> <!-- Jumps down to id="benchmarks" on this page -->
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Software Modules &amp; Prototypes</h1> <!-- Main page heading -->
+
+        <!-- Section 1: Filterable project catalog -->
+        <section>
+            <h2>// Repository Index</h2>
+
+            <!-- Dropdown filter: calls filterProjects() whenever user picks an option -->
+            <label for="domainFilter">Filter by Domain: </label> <!-- Label linked to id="domainFilter" -->
+            <select id="domainFilter" onchange="filterProjects()">
+                <option value="All">All Domains</option> <!-- Shows all cards -->
+                <option value="Systems">Systems</option> <!-- Shows only Systems cards -->
+                <option value="IoT / Edge">IoT / Edge</option> <!-- Shows only IoT / Edge cards -->
+                <option value="Security">Security</option> <!-- Shows only Security cards -->
+            </select>
+
+            <!-- List of project cards (data-domain stores the category for JavaScript filtering) -->
+            <div class="project-list">
+                <!-- Project 1 -->
+                <article class="card" data-domain="Systems">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=400&q=80" alt="Terminal interface" width="160" height="110">
+                    <div> <!-- Groups the text on the right side of the image -->
+                        <h3>Hyperion CLI</h3>
+                        <p>Fast command-line task runner for automating local developer workflows and build scripts.</p>
+                        <p><time datetime="2026-10-15">Updated: 15 Oct 2026</time></p>
+                        <span>[Systems]</span>
+                    </div>
+                </article>
+
+                <!-- Project 2 -->
+                <article class="card" data-domain="IoT / Edge">
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80" alt="Microcontroller board" width="160" height="110">
+                    <div>
+                        <h3>Pulse Telemetry</h3>
+                        <p>Lightweight sensor dashboard collecting real-time temperature and memory metrics over local networks.</p>
+                        <p><time datetime="2026-11-02">Updated: 02 Nov 2026</time></p>
+                        <span>[IoT / Edge]</span>
+                    </div>
+                </article>
+
+                <!-- Project 3 -->
+                <article class="card" data-domain="Security">
+                    <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=400&q=80" alt="Encryption visualization" width="160" height="110">
+                    <div>
+                        <h3>Aegis Auth</h3>
+                        <p>Token verification utility designed for zero-trust microservice APIs and session auditing.</p>
+                        <p><time datetime="2026-11-18">Updated: 18 Nov 2026</time></p>
+                        <span>[Security]</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Section 2: Benchmark comparison table (targeted by #benchmarks link) -->
+        <section id="benchmarks">
+            <h2>// Performance Benchmarks</h2>
+            <table>
+                <thead> <!-- Table column headings -->
+                    <tr>
+                        <td>Module</td>
+                        <td>Avg Latency</td>
+                        <td>Memory Usage</td>
+                        <td>Test Coverage</td>
+                    </tr>
+                </thead>
+                <tbody> <!-- Table data rows -->
+                    <tr>
+                        <td>Hyperion CLI</td>
+                        <td>4.2 ms</td>
+                        <td>12 MB</td>
+                        <td>94%</td>
+                    </tr>
+                    <tr>
+                        <td>Pulse Telemetry</td>
+                        <td>11.8 ms</td>
+                        <td>28 MB</td>
+                        <td>89%</td>
+                    </tr>
+                    <tr>
+                        <td>Aegis Auth</td>
+                        <td>1.9 ms</td>
+                        <td>9 MB</td>
+                        <td>98%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <!-- Bottom footer with link back to home page -->
+    <footer>
+        <p>&copy; 2026 Sherlock's Lab &mdash; <a href="home.html">Return to Terminal</a></p>
+    </footer>
+
+    <!-- Simple JavaScript to show/hide cards when the dropdown changes -->
+    <script>
+        function filterProjects() {
+            var domain = document.getElementById("domainFilter").value; // Get selected option from dropdown
+            var cards = document.querySelectorAll(".card"); // Get all project cards
+            for (var i = 0; i < cards.length; i++) { // Loop through each card
+                var itemDomain = cards[i].getAttribute("data-domain"); // Read card's data-domain value
+                cards[i].style.display = (domain === "All" || itemDomain === domain) ? "flex" : "none"; // Show if matched, hide if not
+            }
+        }
+    </script>
+</body>
+</html>
