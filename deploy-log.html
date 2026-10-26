@@ -1,85 +1,81 @@
-<!DOCTYPE html> <!-- Tells the browser this is an HTML5 page -->
-<html lang="en"> <!-- Root tag of the page (language: English) -->
-<head> <!-- Holds page setup info and CSS styles -->
-    <meta charset="UTF-8"> <!-- Supports special symbols and all text characters -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Fits page nicely on phone and laptop screens -->
-    <title>NEXUS // Deployment Log</title> <!-- Text shown on the browser tab -->
-    <style> /* Internal CSS styles for this page */
-        body { font-family: monospace; margin: 0; background: #0d1117; color: #e6edf3; line-height: 1.5; } /* Dark theme and code-style font */
-        header, footer { background: #161b22; padding: 14px 24px; border-bottom: 1px solid #30363d; } /* Dark bar style for header and footer */
-        header { display: flex; justify-content: space-between; align-items: center; } /* Puts logo on left and menu on right */
-        a { color: #38bdf8; text-decoration: none; } /* Cyan links without underline */
-        nav ul { list-style: none; display: flex; gap: 16px; margin: 0; padding: 0; } /* Horizontal menu list with no bullets */
-        main { max-width: 820px; margin: 20px auto; padding: 0 15px; } /* Centers main content on screen */
-        section { background: #161b22; border: 1px solid #30363d; padding: 16px; margin-bottom: 16px; } /* Box style for each section */
-        .form { display: flex; flex-direction: column; gap: 8px; max-width: 420px; } /* Stacks form inputs vertically in a column */
-        input, select, textarea { background: #0d1117; color: #e6edf3; border: 1px solid #30363d; padding: 6px; } /* Dark input boxes */
-        button { background: #0284c7; color: white; border: none; padding: 8px; cursor: pointer; } /* Blue submit button */
-        table { width: 100%; border-collapse: collapse; } /* Full-width table with single clean border lines */
-        td { border: 1px solid #30363d; padding: 8px; } /* Border and spacing for table cells */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS // Deployment Log</title>
+    <style>
+        body { font-family: monospace; margin: 0; background: #0d1117; color: #e6edf3; line-height: 1.5; }
+        header, footer { background: #161b22; padding: 14px 24px; border-bottom: 1px solid #30363d; }
+        header { display: flex; justify-content: space-between; align-items: center; }
+        a { color: #38bdf8; text-decoration: none; }
+        nav ul { list-style: none; display: flex; gap: 16px; margin: 0; padding: 0; }
+        main { max-width: 820px; margin: 20px auto; padding: 0 15px; }
+        section { background: #161b22; border: 1px solid #30363d; padding: 16px; margin-bottom: 16px; }
+        .form { display: flex; flex-direction: column; gap: 8px; max-width: 420px; }
+        input, select, textarea { background: #0d1117; color: #e6edf3; border: 1px solid #30363d; padding: 6px; }
+        button { background: #0284c7; color: white; border: none; padding: 8px; cursor: pointer; }
+        table { width: 100%; border-collapse: collapse; }
+        td { border: 1px solid #30363d; padding: 8px; }
     </style>
 </head>
 <body>
 
-    <!-- Top navigation header -->
     <header>
-        <a href="home.html"> Sherlock's Lab</a> <!-- Clickable brand link back to home.html -->
+        <a href="home.html">Sherlock's Lab</a>
         <nav>
             <ul>
-                <li><a href="home.html">Terminal</a></li> <!-- Link to Home page -->
-                <li><a href="projects.html">Projects</a></li> <!-- Link to Projects page -->
-                <li><a href="deploy-log.html">Deploy Log</a></li> <!-- Link to Deploy Log page -->
+                <li><a href="home.html">Terminal</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="deploy-log.html">Deploy Log</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <h1>Commit a New Build Entry</h1> <!-- Main page heading -->
+        <h1>Commit a New Build Entry</h1>
 
-        <!-- Section 1: Form to log a new software build -->
         <section>
             <h2>// Deployment Manifest Form</h2>
-            <!-- Form calls commitBuild(event) when submitted -->
             <form id="deployform" class="form" action="" method="post" onsubmit="commitBuild(event)">
 
-                <label for="buildName">Module / Build Name</label> <!-- Label connected to id="buildName" -->
-                <input id="buildName" type="text" placeholder="e.g. Hyperion CLI v1.5" required> <!-- Required text input -->
+                <label for="buildName">Module / Build Name</label>
+                <input id="buildName" type="text" placeholder="e.g. Hyperion CLI v1.5" required>
 
                 <label for="releaseDate">Deploy Date</label>
-                <input id="releaseDate" type="date" required> <!-- Calendar date picker (required) -->
+                <input id="releaseDate" type="date" required>
 
                 <label for="nodeTarget">Target Server Node</label>
-                <input id="nodeTarget" type="text" placeholder="e.g. alpha-core-01" required> <!-- Required text input -->
+                <input id="nodeTarget" type="text" placeholder="e.g. alpha-core-01" required>
 
                 <label for="subsystem">Subsystem Category</label>
-                <select id="subsystem"> <!-- Dropdown menu with 3 choices -->
+                <select id="subsystem">
                     <option value="Systems">Systems</option>
                     <option value="IoT / Edge">IoT / Edge</option>
                     <option value="Security">Security</option>
                 </select>
 
                 <label for="threads">Worker Threads Allocated</label>
-                <input id="threads" type="number" value="4"> <!-- Number input with default value 4 -->
+                <input id="threads" type="number" value="4">
 
                 <label for="email">Maintainer Email</label>
-                <input id="email" type="email" placeholder="e.g. dev@nexuslab.io" required> <!-- Checks for valid @ email format -->
+                <input id="email" type="email" placeholder="e.g. dev@nexuslab.io" required>
 
                 <label for="changelog">Changelog Notes</label>
-                <textarea id="changelog" rows="4" placeholder="Summary of patches, fixes, or optimizations..."></textarea> <!-- 4-line text box -->
+                <textarea id="changelog" rows="4" placeholder="Summary of patches, fixes, or optimizations..."></textarea>
 
                 <label class="checkbox">
-                    <input id="ciPassed" type="checkbox" checked> Automated CI Checks Passed <!-- Tick box, pre-checked by default -->
+                    <input id="ciPassed" type="checkbox" checked> Automated CI Checks Passed
                 </label>
 
-                <button type="submit">Commit Build Entry</button> <!-- Submits the form -->
+                <button type="submit">Commit Build Entry</button>
             </form>
         </section>
 
-        <!-- Section 2: Table showing logged deployments -->
         <section>
             <h2>// Recent Deployment History</h2>
             <table>
-                <thead> <!-- Table header row -->
+                <thead>
                     <tr>
                         <td>Module</td>
                         <td>Date</td>
@@ -87,7 +83,7 @@
                         <td>Threads</td>
                     </tr>
                 </thead>
-                <tbody id="logTableBody"> <!-- id="logTableBody" lets JavaScript add new rows here -->
+                <tbody id="logTableBody">
                     <tr>
                         <td>Hyperion CLI v1.4</td>
                         <td>15 Oct</td>
@@ -111,23 +107,21 @@
         </section>
     </main>
 
-    <!-- Bottom footer -->
     <footer>
         <p>&copy; 2026 Sherlock's Lab &mdash; <a href="home.html">Return to Terminal</a></p>
     </footer>
 
-    <!-- Simple JavaScript to add the submitted form data into the table -->
     <script>
         function commitBuild(e) {
-            e.preventDefault(); // Stops the page from refreshing when form is submitted
-            var table = document.getElementById("logTableBody"); // Finds the table body
-            var row = table.insertRow(); // Creates a new row at the bottom of the table
-            row.insertCell(0).textContent = document.getElementById("buildName").value; // Cell 1: Module name
-            row.insertCell(1).textContent = document.getElementById("releaseDate").value; // Cell 2: Deploy date
-            row.insertCell(2).textContent = document.getElementById("nodeTarget").value; // Cell 3: Server node
-            row.insertCell(3).textContent = document.getElementById("threads").value; // Cell 4: Thread count
-            document.getElementById("deployform").reset(); // Clears the form inputs
-            alert("Build logged to deployment history."); // Shows confirmation popup
+            e.preventDefault();
+            var table = document.getElementById("logTableBody");
+            var row = table.insertRow();
+            row.insertCell(0).textContent = document.getElementById("buildName").value;
+            row.insertCell(1).textContent = document.getElementById("releaseDate").value;
+            row.insertCell(2).textContent = document.getElementById("nodeTarget").value;
+            row.insertCell(3).textContent = document.getElementById("threads").value;
+            document.getElementById("deployform").reset();
+            alert("Build logged to deployment history.");
         }
     </script>
 </body>
