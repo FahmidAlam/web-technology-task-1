@@ -1,0 +1,571 @@
+/* ==========================================================================
+   NEXUS // Deployment Log
+   Theme: Modern Prosthetic / Soothing Calibration Rig Console (deploy-log.css)
+   ========================================================================== */
+
+:root {
+    --chassis-black: #06090e;
+    --titanium-dark: #0c1219;
+    --titanium-panel: #111823;
+    --titanium-surface: #172230;
+    --joint-border: #1f2d3f;
+    --joint-highlight: #344863;
+    --bionic-amber: #ffaa00;
+    --bionic-amber-dim: rgba(255, 170, 0, 0.12);
+    --bionic-amber-glow: 0 0 16px rgba(255, 170, 0, 0.35);
+    --bionic-cyan: #00f0ff;
+    --bionic-cyan-dim: rgba(0, 240, 255, 0.12);
+    --bionic-emerald: #00ff9d;
+    --text-primary: #e6edf8;
+    --text-muted: #8799b0;
+    --text-dim: #54667d;
+    --ease-soothing: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+::selection {
+    background: var(--bionic-amber-dim);
+    color: var(--bionic-amber);
+}
+
+body {
+    margin: 0;
+    font-family: ui-monospace, "SF Mono", "Cascadia Code", "Source Code Pro", Menlo, Consolas, monospace;
+    background-color: var(--chassis-black);
+    background-image:
+        radial-gradient(circle at 20% 10%, rgba(255, 170, 0, 0.07) 0%, transparent 60%),
+        linear-gradient(rgba(31, 45, 63, 0.24) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(31, 45, 63, 0.24) 1px, transparent 1px);
+    background-size: 100% 100%, 24px 24px, 24px 24px;
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    animation: ambientAmberRespiration 18s ease-in-out infinite alternate;
+}
+
+@keyframes ambientAmberRespiration {
+    0% {
+        background-color: #06090e;
+    }
+    50% {
+        background-color: #0a0d14;
+    }
+    100% {
+        background-color: #06090e;
+    }
+}
+
+/* ==========================================================================
+   Header & Navigation
+   ========================================================================== */
+
+header {
+    background: linear-gradient(180deg, var(--titanium-dark) 0%, rgba(12, 18, 25, 0.95) 100%);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--joint-border);
+    position: relative;
+    padding: 14px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+    animation: headerSlideDown 0.7s var(--ease-soothing) both;
+}
+
+@keyframes headerSlideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+header::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 45%;
+    width: 140px;
+    height: 2px;
+    background: var(--bionic-amber);
+    box-shadow: 0 0 14px var(--bionic-amber);
+    animation: amberPulseBeam 4.5s ease-in-out infinite;
+}
+
+@keyframes amberPulseBeam {
+    0%, 100% {
+        opacity: 0.6;
+        box-shadow: 0 0 8px rgba(255, 170, 0, 0.4);
+        width: 120px;
+    }
+    50% {
+        opacity: 1;
+        box-shadow: 0 0 20px rgba(255, 170, 0, 0.7), 0 0 32px rgba(255, 170, 0, 0.35);
+        width: 170px;
+    }
+}
+
+header > a {
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: color 0.35s ease, text-shadow 0.35s ease, transform 0.35s var(--ease-soothing);
+}
+
+header > a::before {
+    content: "◆";
+    color: var(--bionic-amber);
+    font-size: 0.85rem;
+    filter: drop-shadow(0 0 6px var(--bionic-amber));
+    animation: diamondPulse 3.2s ease-in-out infinite;
+}
+
+@keyframes diamondPulse {
+    0%, 100% {
+        opacity: 0.7;
+        filter: drop-shadow(0 0 4px var(--bionic-amber));
+    }
+    50% {
+        opacity: 1;
+        filter: drop-shadow(0 0 10px var(--bionic-amber));
+    }
+}
+
+header > a:hover {
+    color: var(--bionic-amber);
+    text-shadow: 0 0 12px rgba(255, 170, 0, 0.6);
+    transform: translateX(2px);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 18px;
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 1px solid transparent;
+    transition: all 0.3s var(--ease-soothing);
+}
+
+nav a:hover {
+    color: var(--bionic-amber);
+    border-color: var(--joint-highlight);
+    background: var(--bionic-amber-dim);
+    box-shadow: inset 0 0 8px rgba(255, 170, 0, 0.12);
+    transform: translateY(-1px);
+}
+
+a {
+    color: var(--bionic-cyan);
+    text-decoration: none;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+a:hover {
+    color: #ffffff;
+    text-shadow: 0 0 8px var(--bionic-cyan);
+}
+
+/* ==========================================================================
+   Main Content & Mechanical Section Housings
+   ========================================================================== */
+
+main {
+    max-width: 860px;
+    width: 100%;
+    margin: 32px auto;
+    padding: 0 20px;
+    flex: 1;
+}
+
+main > h1 {
+    font-size: 1.5rem;
+    margin: 0 0 22px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: fadeInHeading 0.7s var(--ease-soothing) both 0.1s;
+}
+
+@keyframes fadeInHeading {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+main > h1::before {
+    content: ">>";
+    color: var(--bionic-amber);
+    font-weight: 800;
+}
+
+section {
+    background: var(--titanium-panel);
+    border: 1px solid var(--joint-border);
+    border-left: 3px solid var(--bionic-amber);
+    position: relative;
+    padding: 24px;
+    margin-bottom: 26px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
+    animation: sectionReveal 0.75s var(--ease-soothing) both;
+    transition: border-color 0.4s ease, box-shadow 0.4s var(--ease-soothing), transform 0.4s var(--ease-soothing);
+}
+
+section:hover {
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.55), -3px 0 18px rgba(255, 170, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+section:nth-of-type(1) { animation-delay: 0.15s; }
+section:nth-of-type(2) { animation-delay: 0.30s; }
+
+@keyframes sectionReveal {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+section::after {
+    content: "RIG_CALIBRATION // ACTIVE";
+    position: absolute;
+    top: 8px;
+    right: 14px;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+    pointer-events: none;
+    transition: color 0.3s ease;
+}
+
+section:hover::after {
+    color: var(--bionic-amber);
+}
+
+h2 {
+    font-size: 1.05rem;
+    margin-top: 0;
+    margin-bottom: 18px;
+    color: var(--bionic-amber);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+/* ==========================================================================
+   Prosthetic Input Console (.form)
+   ========================================================================== */
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 480px;
+}
+
+label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.3s ease;
+}
+
+label:not(.checkbox)::before {
+    content: "•";
+    color: var(--bionic-amber);
+    font-size: 0.9rem;
+    transition: transform 0.3s ease;
+}
+
+.form:has(input:focus, select:focus, textarea:focus) label:not(.checkbox) {
+    color: var(--text-primary);
+}
+
+input, select, textarea {
+    font-family: inherit;
+    font-size: 0.88rem;
+    background: var(--titanium-dark);
+    color: var(--text-primary);
+    border: 1px solid var(--joint-highlight);
+    padding: 10px 14px;
+    border-radius: 2px;
+    letter-spacing: 0.04em;
+    transition: all 0.35s var(--ease-soothing);
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
+}
+
+input::placeholder, textarea::placeholder {
+    color: var(--text-dim);
+    font-size: 0.82rem;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--bionic-amber);
+    background: #0f1620;
+    box-shadow: 0 0 16px rgba(255, 170, 0, 0.3), inset 0 0 8px rgba(255, 170, 0, 0.06);
+    transform: translateY(-1px);
+}
+
+select option {
+    background: var(--titanium-dark);
+    color: var(--text-primary);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 90px;
+}
+
+/* Custom Checkbox Toggle */
+.checkbox {
+    margin: 8px 0 4px;
+    font-size: 0.82rem;
+    color: var(--text-primary);
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: color 0.3s ease;
+}
+
+.checkbox input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 1px solid var(--joint-highlight);
+    background: var(--titanium-dark);
+    border-radius: 2px;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    position: relative;
+    clip-path: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s var(--ease-soothing);
+}
+
+.checkbox:hover input[type="checkbox"] {
+    border-color: var(--bionic-amber);
+    box-shadow: 0 0 8px rgba(255, 170, 0, 0.3);
+}
+
+.checkbox input[type="checkbox"]:checked {
+    background: var(--bionic-amber);
+    border-color: var(--bionic-amber);
+    box-shadow: 0 0 12px var(--bionic-amber);
+    transform: scale(1.05);
+}
+
+.checkbox input[type="checkbox"]:checked::after {
+    content: "✓";
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: #000000;
+}
+
+/* High-Actuation Trigger Button */
+button[type="submit"] {
+    font-family: inherit;
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+    color: #ffffff;
+    border: 1px solid #38bdf8;
+    padding: 12px 24px;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 2px;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    box-shadow: 0 4px 16px rgba(2, 132, 199, 0.4);
+    transition: all 0.35s var(--ease-soothing);
+    position: relative;
+}
+
+button[type="submit"]:hover {
+    background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+    border-color: #7dd3fc;
+    box-shadow: 0 6px 24px rgba(14, 165, 233, 0.55), 0 0 16px rgba(0, 240, 255, 0.35);
+    transform: translateY(-2px);
+}
+
+button[type="submit"]:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 10px rgba(2, 132, 199, 0.5);
+}
+
+/* ==========================================================================
+   Deployment History Matrix (Telemetry Table)
+   ========================================================================== */
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: var(--titanium-dark);
+    border: 1px solid var(--joint-border);
+    font-size: 0.86rem;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+thead tr {
+    background: linear-gradient(180deg, var(--titanium-surface) 0%, var(--titanium-dark) 100%);
+}
+
+thead td {
+    color: var(--bionic-amber);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--joint-highlight);
+    padding: 12px 16px;
+}
+
+tbody tr {
+    transition: background-color 0.25s ease, transform 0.25s var(--ease-soothing);
+}
+
+tbody tr:hover {
+    background: rgba(255, 170, 0, 0.06);
+}
+
+td {
+    border-bottom: 1px solid var(--joint-border);
+    padding: 11px 16px;
+    color: var(--text-muted);
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+tbody td:nth-child(1) {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+tbody td:nth-child(3) {
+    color: var(--bionic-cyan);
+}
+
+tbody td:nth-child(4) {
+    color: var(--bionic-emerald);
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   Footer Component
+   ========================================================================== */
+
+footer {
+    background: var(--titanium-dark);
+    border-top: 2px solid var(--joint-border);
+    padding: 16px 28px;
+    text-align: center;
+    animation: footerFade 0.8s var(--ease-soothing) both 0.5s;
+}
+
+@keyframes footerFade {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    letter-spacing: 0.06em;
+}
+
+footer a {
+    color: var(--bionic-amber);
+}
+
+/* ==========================================================================
+   Responsive Adaptations & Accessibility
+   ========================================================================== */
+
+@media (max-width: 680px) {
+    header {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+    }
+    header::after {
+        left: 0;
+        width: 100%;
+    }
+    nav ul {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    section {
+        padding: 16px;
+    }
+    .form {
+        max-width: 100%;
+    }
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

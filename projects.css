@@ -1,0 +1,592 @@
+/* ==========================================================================
+   NEXUS // Projects Catalog
+   Theme: Modern Prosthetic / Soothing Modular Cyberware Spec (projects.css)
+   ========================================================================== */
+
+:root {
+    --chassis-black: #06090e;
+    --titanium-dark: #0b1018;
+    --titanium-panel: #101722;
+    --titanium-surface: #172232;
+    --joint-border: #1e2c3f;
+    --joint-highlight: #314663;
+    --bionic-cyan: #00f0ff;
+    --bionic-cyan-dim: rgba(0, 240, 255, 0.12);
+    --bionic-cyan-glow: 0 0 16px rgba(0, 240, 255, 0.35);
+    --bionic-neon-blue: #38bdf8;
+    --bionic-emerald: #00ff9d;
+    --bionic-violet: #a855f7;
+    --text-primary: #e6edf8;
+    --text-muted: #8497b0;
+    --text-dim: #54667d;
+    --ease-soothing: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+::selection {
+    background: var(--bionic-cyan-dim);
+    color: var(--bionic-cyan);
+}
+
+body {
+    margin: 0;
+    font-family: ui-monospace, "SF Mono", "Cascadia Code", "Source Code Pro", Menlo, Consolas, monospace;
+    background-color: var(--chassis-black);
+    background-image:
+        radial-gradient(circle at 80% 10%, rgba(56, 189, 248, 0.08) 0%, transparent 60%),
+        linear-gradient(rgba(30, 44, 63, 0.24) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30, 44, 63, 0.24) 1px, transparent 1px);
+    background-size: 100% 100%, 24px 24px, 24px 24px;
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    animation: ambientDrift 18s ease-in-out infinite alternate;
+}
+
+@keyframes ambientDrift {
+    0% {
+        background-color: #06090e;
+    }
+    50% {
+        background-color: #080c14;
+    }
+    100% {
+        background-color: #06090e;
+    }
+}
+
+/* ==========================================================================
+   Header & Navigation
+   ========================================================================== */
+
+header {
+    background: linear-gradient(180deg, var(--titanium-dark) 0%, rgba(11, 16, 24, 0.95) 100%);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--joint-border);
+    position: relative;
+    padding: 14px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+    animation: headerSlideDown 0.7s var(--ease-soothing) both;
+}
+
+@keyframes headerSlideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+header::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    right: 28px;
+    width: 160px;
+    height: 2px;
+    background: var(--bionic-neon-blue);
+    box-shadow: 0 0 14px var(--bionic-neon-blue);
+    animation: bluePulseBeam 4s ease-in-out infinite;
+}
+
+@keyframes bluePulseBeam {
+    0%, 100% {
+        opacity: 0.6;
+        box-shadow: 0 0 8px rgba(56, 189, 248, 0.4);
+        width: 130px;
+    }
+    50% {
+        opacity: 1;
+        box-shadow: 0 0 20px rgba(56, 189, 248, 0.7), 0 0 30px rgba(56, 189, 248, 0.3);
+        width: 180px;
+    }
+}
+
+header > a {
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: color 0.35s ease, text-shadow 0.35s ease, transform 0.35s var(--ease-soothing);
+}
+
+header > a::before {
+    content: "▲";
+    color: var(--bionic-neon-blue);
+    font-size: 0.75rem;
+    filter: drop-shadow(0 0 6px var(--bionic-neon-blue));
+    animation: trianglePulse 3s ease-in-out infinite;
+}
+
+@keyframes trianglePulse {
+    0%, 100% {
+        opacity: 0.7;
+        filter: drop-shadow(0 0 4px var(--bionic-neon-blue));
+    }
+    50% {
+        opacity: 1;
+        filter: drop-shadow(0 0 10px var(--bionic-neon-blue));
+    }
+}
+
+header > a:hover {
+    color: var(--bionic-neon-blue);
+    text-shadow: 0 0 12px rgba(56, 189, 248, 0.6);
+    transform: translateX(2px);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 18px;
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 1px solid transparent;
+    transition: all 0.3s var(--ease-soothing);
+}
+
+nav a:hover {
+    color: var(--bionic-cyan);
+    border-color: var(--joint-highlight);
+    background: var(--bionic-cyan-dim);
+    box-shadow: inset 0 0 8px rgba(0, 240, 255, 0.12);
+    transform: translateY(-1px);
+}
+
+a {
+    color: var(--bionic-cyan);
+    text-decoration: none;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+a:hover {
+    color: #ffffff;
+    text-shadow: 0 0 8px var(--bionic-cyan);
+}
+
+/* ==========================================================================
+   Main Content & Modular Panels
+   ========================================================================== */
+
+main {
+    max-width: 860px;
+    width: 100%;
+    margin: 32px auto;
+    padding: 0 20px;
+    flex: 1;
+}
+
+main > h1 {
+    font-size: 1.5rem;
+    margin: 0 0 22px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: fadeInHeading 0.7s var(--ease-soothing) both 0.1s;
+}
+
+@keyframes fadeInHeading {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+main > h1::before {
+    content: "///";
+    color: var(--bionic-neon-blue);
+    font-weight: 800;
+}
+
+section {
+    background: var(--titanium-panel);
+    border: 1px solid var(--joint-border);
+    border-top: 2px solid var(--joint-highlight);
+    border-left: 3px solid var(--bionic-neon-blue);
+    position: relative;
+    padding: 24px;
+    margin-bottom: 26px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
+    animation: sectionReveal 0.75s var(--ease-soothing) both;
+    transition: border-color 0.4s ease, box-shadow 0.4s var(--ease-soothing), transform 0.4s var(--ease-soothing);
+}
+
+section:hover {
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.55), -3px 0 18px rgba(56, 189, 248, 0.2);
+    transform: translateY(-2px);
+}
+
+section:nth-of-type(1) { animation-delay: 0.15s; }
+section:nth-of-type(2) { animation-delay: 0.3s; }
+
+@keyframes sectionReveal {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+section::after {
+    content: "CATALOG // NODE-SYNCED";
+    position: absolute;
+    top: 8px;
+    right: 14px;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+    pointer-events: none;
+    transition: color 0.3s ease;
+}
+
+section:hover::after {
+    color: var(--bionic-neon-blue);
+}
+
+h2 {
+    font-size: 1.05rem;
+    margin-top: 0;
+    margin-bottom: 16px;
+    color: var(--bionic-neon-blue);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+/* ==========================================================================
+   Interactive Domain Filter Control
+   ========================================================================== */
+
+label[for="domainFilter"] {
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-right: 8px;
+}
+
+select {
+    font-family: inherit;
+    font-size: 0.85rem;
+    background: var(--titanium-dark);
+    color: var(--text-primary);
+    border: 1px solid var(--joint-highlight);
+    padding: 8px 14px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    border-radius: 2px;
+    letter-spacing: 0.05em;
+    transition: all 0.35s var(--ease-soothing);
+    clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 0 100%);
+}
+
+select:hover, select:focus {
+    border-color: var(--bionic-neon-blue);
+    box-shadow: 0 0 14px rgba(56, 189, 248, 0.35);
+    outline: none;
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+select option {
+    background: var(--titanium-dark);
+    color: var(--text-primary);
+}
+
+/* ==========================================================================
+   Horizontal Prosthetic Module Cards (.card)
+   ========================================================================== */
+
+.project-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.card {
+    background: var(--titanium-dark);
+    border: 1px solid var(--joint-border);
+    border-left: 3px solid var(--bionic-neon-blue);
+    padding: 16px;
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
+    transition: transform 0.4s var(--ease-soothing), border-color 0.35s ease, box-shadow 0.4s var(--ease-soothing);
+    animation: cardListEntrance 0.7s var(--ease-soothing) both;
+}
+
+.project-list .card:nth-child(1) { animation-delay: 0.22s; }
+.project-list .card:nth-child(2) { animation-delay: 0.32s; }
+.project-list .card:nth-child(3) { animation-delay: 0.42s; }
+
+@keyframes cardListEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card:hover {
+    transform: translateX(6px);
+    border-color: var(--bionic-cyan);
+    border-left-color: var(--bionic-cyan);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6), -2px 0 18px rgba(0, 240, 255, 0.2), inset 0 0 15px rgba(0, 240, 255, 0.06);
+}
+
+.card img {
+    width: 170px;
+    height: 115px;
+    object-fit: cover;
+    border: 1px solid var(--joint-border);
+    flex-shrink: 0;
+    filter: saturate(0.85) contrast(1.1);
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
+    transition: filter 0.4s ease, border-color 0.4s ease, transform 0.4s var(--ease-soothing);
+}
+
+.card:hover img {
+    filter: saturate(1.15) contrast(1.15);
+    border-color: var(--bionic-neon-blue);
+    transform: scale(1.02);
+}
+
+.card > div {
+    flex: 1;
+}
+
+.card h3 {
+    margin: 0 0 6px;
+    font-size: 1.15rem;
+    color: var(--text-primary);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.card:hover h3 {
+    color: #ffffff;
+}
+
+.card p {
+    margin: 0 0 8px;
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.card time {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+}
+
+.card span {
+    display: inline-block;
+    margin-top: 4px;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 3px 10px;
+    background: var(--titanium-surface);
+    color: var(--bionic-neon-blue);
+    border: 1px solid var(--joint-highlight);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.card:hover span {
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+}
+
+/* Domain specific highlight accents */
+.card[data-domain="Security"] span {
+    color: var(--bionic-violet);
+    border-color: rgba(168, 85, 247, 0.4);
+}
+
+.card[data-domain="Security"]:hover span {
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.4);
+}
+
+.card[data-domain="IoT / Edge"] span {
+    color: var(--bionic-emerald);
+    border-color: rgba(0, 255, 157, 0.4);
+}
+
+.card[data-domain="IoT / Edge"]:hover span {
+    box-shadow: 0 0 10px rgba(0, 255, 157, 0.4);
+}
+
+/* ==========================================================================
+   Benchmark Performance Matrix (Telemetry Table)
+   ========================================================================== */
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: var(--titanium-dark);
+    border: 1px solid var(--joint-border);
+    font-size: 0.86rem;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+thead tr {
+    background: linear-gradient(180deg, var(--titanium-surface) 0%, var(--titanium-dark) 100%);
+}
+
+thead td {
+    color: var(--bionic-neon-blue);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--joint-highlight);
+    padding: 12px 16px;
+}
+
+tbody tr {
+    transition: background-color 0.25s ease, transform 0.25s var(--ease-soothing);
+}
+
+tbody tr:hover {
+    background: rgba(56, 189, 248, 0.06);
+}
+
+td {
+    border-bottom: 1px solid var(--joint-border);
+    padding: 11px 16px;
+    color: var(--text-muted);
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Latency / Performance Monospace accents with gentle breathing */
+tbody td:nth-child(2) {
+    color: var(--bionic-emerald);
+    font-weight: 600;
+}
+
+tbody td:nth-child(4) {
+    color: var(--bionic-cyan);
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   Footer Component
+   ========================================================================== */
+
+footer {
+    background: var(--titanium-dark);
+    border-top: 2px solid var(--joint-border);
+    padding: 16px 28px;
+    text-align: center;
+    animation: footerFade 0.8s var(--ease-soothing) both 0.5s;
+}
+
+@keyframes footerFade {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    letter-spacing: 0.06em;
+}
+
+footer a {
+    color: var(--bionic-neon-blue);
+}
+
+/* ==========================================================================
+   Responsive Adaptations & Accessibility
+   ========================================================================== */
+
+@media (max-width: 680px) {
+    header {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+    }
+    header::after {
+        left: 0;
+        width: 100%;
+    }
+    nav ul {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    section {
+        padding: 16px;
+    }
+    .card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .card img {
+        width: 100%;
+        height: 140px;
+    }
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
